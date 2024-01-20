@@ -26,4 +26,43 @@ class UserData extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function personalData()
+    {
+        return $this->hasOne(PersonalData::class);
+    }
+
+    public function homedata()
+    {
+        return $this->hasOne(HomeData::class);
+    }
+
+    public function militaryServiceData()
+    {
+        return $this->hasOne(MilitaryServiceData::class);
+    }
+
+    public function educationData()
+    {
+        return $this->hasOne(EducationData::class);
+    }
+
+    public function courseData()
+    {
+        return $this->hasOne(CourseData::class);
+    }
+
+    public function appExperienceData()
+    {
+        return $this->hasOne(AppExperienceData::class);
+    }
+
+    public function foreignLanguagesData()
+    {
+        return $this->hasOne(ForeignLanguagesData::class);
+    }
+
+    public function representativeData()
+    {
+        return $this->hasOne(RepresentativeData::class);
+    }
 }
