@@ -22,7 +22,7 @@ return new class extends Migration
             $table->date('after_course_installment_start');
             $table->timestamps();
 
-            $table->foreign('course_student_id')->references('id')->on('users');
+            $table->foreign('course_student_id')->references('id')->on('course_students');
         });
     }
 
