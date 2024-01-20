@@ -22,8 +22,9 @@ return new class extends Migration {
 
             $table->foreign('student_id')->references('id')->on('users');
             $table->foreign('course_id')->references('id')->on('courses');
-            $table->foreign('installment_data_id')->references('id')->on('installments');
+            $table->foreign('installment_data_id')->references('id')->on('course_installments');
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**

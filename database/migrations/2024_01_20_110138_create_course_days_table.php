@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('course_days', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('course_id');
@@ -21,8 +22,9 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('course_id')->references('id')->on('courses');
-            $table->foreign('class_id')->references('id')->on('classes');
+            $table->foreign('class_id')->references('id')->on('classrooms');
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**

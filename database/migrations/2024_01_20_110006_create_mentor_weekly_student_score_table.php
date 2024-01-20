@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('mentor_weekly_student_score', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('course_student_id');
-            $table->integer('technical score');
+            $table->integer('technical_score');
             $table->integer('week_number');
             $table->timestamps();
 
