@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('admin_data', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('work_address');
+            $table->string('work_position');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
