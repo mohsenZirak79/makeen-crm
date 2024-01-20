@@ -47,4 +47,29 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserData::class);
     }
+
+    public function mentorWeeklyStudentScores()
+    {
+    return $this->hasMany(MentorWeeklyStudentScore::class, 'course_student_id');
+    }
+    public function performanceOverviews()
+    {
+        return $this->hasMany(PerformanceOverview::class, 'course_student_id');
+    }
+    public function courseStudents()
+    {
+        return $this->hasMany(CourseStudent::class, 'student_id');
+    }
+    public function courses()
+    {
+        return $this->hasMany(Course::class, 'mentor_id');
+    }
+    public function notificationUsers()
+    {
+        return $this->hasMany(NotificationUser::class, 'user_id');
+    }
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class, 'sender_id');
+    }
 }
