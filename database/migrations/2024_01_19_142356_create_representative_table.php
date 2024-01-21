@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('representative', function (Blueprint $table) {
+        Schema::create('representative_data', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_data_id');
             $table->string('name');
@@ -30,6 +30,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('representative_data', function (Blueprint $table) {
+            $table->dropForeign('representative_data_user_data_id_foreign');
+        });
         Schema::dropIfExists('representative');
     }
 };

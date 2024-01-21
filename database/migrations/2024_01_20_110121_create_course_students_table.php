@@ -10,19 +10,16 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
         Schema::create('course_students', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('student_id');
             $table->unsignedBigInteger('course_id');
             $table->set('student_status',['1','2']);
             $table->boolean('is_supplement');
-            $table->unsignedBigInteger('installment_data_id');
             $table->timestamps();
 
             $table->foreign('student_id')->references('id')->on('users');
             $table->foreign('course_id')->references('id')->on('courses');
-            $table->foreign('installment_data_id')->references('id')->on('course_installments');
         });
     }
 

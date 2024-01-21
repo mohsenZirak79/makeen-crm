@@ -10,7 +10,6 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
         Schema::create('mentor_weekly_student_score', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('course_student_id');
@@ -20,7 +19,6 @@ return new class extends Migration {
 
             $table->foreign('course_student_id')->references('id')->on('course_students');
         });
-        Schema::enableForeignKeyConstraints();
     }
 
     /**
