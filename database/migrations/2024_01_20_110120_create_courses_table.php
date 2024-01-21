@@ -23,7 +23,7 @@ return new class extends Migration
             $table->time('end_time');
             $table->timestamps();
 
-            $table->foreign('mentor_id')->references('id')->on('mentors');
+            $table->foreign('mentor_id')->references('id')->on('users');
             $table->foreign('sub_category_id')->references('id')->on('categories');
         });
     }
