@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Classroom extends Model
 {
@@ -15,8 +16,9 @@ class Classroom extends Model
         'name',
         'capacity',
     ];
-    public function courseDays()
+
+    public function courses(): BelongsToMany
     {
-        return $this->hasMany(CourseDay::class, 'class_id');
+        return $this->belongsToMany(Course::class, 'course_days');
     }
 }
