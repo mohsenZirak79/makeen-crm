@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
 class MentorWeeklyStudentScore extends Model
 {
@@ -17,8 +20,18 @@ class MentorWeeklyStudentScore extends Model
         'week_number',
     ];
 
-    public function user()
+    public function courseStudent(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'course_student_id');
+        return $this->belongsTo(CourseStudent::class, 'course_student_id');
+    }
+
+    public function user(): HasOneThrough|HasManyThrough
+    {
+        return $this->through('courseStudent')->has('student');
+    }
+
+    public function course(): HasOneThrough|HasManyThrough
+    {
+        return $this->through('courseStudent')->has('course');
     }
 }

@@ -72,4 +72,9 @@ class User extends Authenticatable
     {
         return $this->through('courseStudent')->has('leaveRequests');
     }
+
+    public function mentorWeeklyStudentScore(): HasOneThrough|HasManyThrough
+    {
+        return $this->through('courseStudent')->has('mentorWeeklyStudentScore');
+    }
 }

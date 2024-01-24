@@ -50,4 +50,9 @@ class CourseStudent extends Pivot
     {
         return $this->hasMany(Report::class, 'course_student_id');
     }
+
+    public function mentorWeeklyStudentScore(): HasMany
+    {
+        return $this->hasMany(MentorWeeklyStudentScore::class, 'course_student_id');
+    }
 }
