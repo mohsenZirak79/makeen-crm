@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class SubReport extends Model
 {
-    use HasFactory;
     protected $table = 'sub_reports';
 
     protected $fillable = [
@@ -17,7 +16,7 @@ class SubReport extends Model
         'explanation',
     ];
 
-    public function report()
+    public function report(): BelongsTo
     {
         return $this->belongsTo(Report::class, 'report_id');
     }

@@ -2,13 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class PersonalData extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'user_data_id',
         'birth_place',
@@ -22,7 +20,7 @@ class PersonalData extends Model
         'emergency_phone_number'
     ];
 
-    public function userData()
+    public function userData(): BelongsTo
     {
         return $this->belongsTo(UserData::class);
     }

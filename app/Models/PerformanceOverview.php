@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class PerformanceOverview extends Model
 {
-    use HasFactory;
     protected $table = 'performance_overviews';
 
     protected $fillable = [
@@ -23,7 +22,7 @@ class PerformanceOverview extends Model
         'is_visible_for_user',
     ];
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'course_student_id');
     }

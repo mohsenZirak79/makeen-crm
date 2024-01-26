@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class EducationData extends Model
 {
-    use HasFactory;
     protected $fillable = [
         'user_data_id',
         'diploma',
@@ -15,8 +14,9 @@ class EducationData extends Model
         'bachelor_degree',
         'master_degree'
     ];
-    public function userData()
-{
-    return $this->belongsTo(UserData::class);
-}
+
+    public function userData(): BelongsTo
+    {
+        return $this->belongsTo(UserData::class);
+    }
 }

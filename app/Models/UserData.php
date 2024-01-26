@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class UserData extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'user_id',
         'personal_data_id',
@@ -21,47 +20,47 @@ class UserData extends Model
         'representative_data_id'
     ];
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function personalData()
+    public function personalData(): HasOne
     {
         return $this->hasOne(PersonalData::class);
     }
 
-    public function homedata()
+    public function homeData(): HasOne
     {
         return $this->hasOne(HomeData::class);
     }
 
-    public function militaryServiceData()
+    public function militaryServiceData(): HasOne
     {
         return $this->hasOne(MilitaryServiceData::class);
     }
 
-    public function educationData()
+    public function educationData(): HasOne
     {
         return $this->hasOne(EducationData::class);
     }
 
-    public function courseData()
+    public function courseData(): HasOne
     {
         return $this->hasOne(CourseData::class);
     }
 
-    public function appExperienceData()
+    public function appExperienceData(): HasOne
     {
         return $this->hasOne(AppExperienceData::class);
     }
 
-    public function foreignLanguagesData()
+    public function foreignLanguagesData(): HasOne
     {
         return $this->hasOne(ForeignLanguagesData::class);
     }
 
-    public function representativeData()
+    public function representativeData(): HasOne
     {
         return $this->hasOne(RepresentativeData::class);
     }

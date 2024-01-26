@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Classroom extends Model
 {
-    use HasFactory;
 
     protected $table = 'classrooms';
 

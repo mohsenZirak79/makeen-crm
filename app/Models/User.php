@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -38,17 +39,17 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function adminData()
+    public function adminData(): HasOne
     {
         return $this->hasOne(AdminData::class);
     }
 
-    public function teacherData()
+    public function teacherData(): HasOne
     {
         return $this->hasOne(MentorData::class);
     }
 
-    public function userData()
+    public function userData(): HasOne
     {
         return $this->hasOne(UserData::class);
     }

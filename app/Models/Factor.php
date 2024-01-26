@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Factor extends Model
 {
-    use HasFactory;
-
     protected $table = 'factors';
 
     protected $fillable = [
@@ -19,12 +18,12 @@ class Factor extends Model
         'du_date',
     ];
 
-    public function courseInstallment()
+    public function courseInstallment(): BelongsTo
     {
         return $this->belongsTo(CourseInstallment::class, 'course_installments_id');
     }
 
-    public function transactions()
+    public function transactions(): HasMany
     {
         return $this->hasMany(Transaction::class, 'factors_id');
     }

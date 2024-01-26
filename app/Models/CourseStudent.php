@@ -11,8 +11,6 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class CourseStudent extends Pivot
 {
-    use HasFactory;
-
     public $incrementing = true;
     protected $table = 'course_students';
     protected $foreignKey = 'course_id';

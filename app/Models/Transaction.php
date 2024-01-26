@@ -2,13 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Transaction extends Model
 {
-    use HasFactory;
-
     protected $table = 'transactions';
 
     protected $fillable = [
@@ -17,7 +15,7 @@ class Transaction extends Model
         'status',
     ];
 
-    public function factor()
+    public function factor(): BelongsTo
     {
         return $this->belongsTo(Factor::class, 'factors_id');
     }

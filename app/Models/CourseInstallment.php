@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class CourseInstallment extends Model
 {
-    use HasFactory;
 
     protected $table = 'course_installments';
 
@@ -21,11 +21,12 @@ class CourseInstallment extends Model
         'after_course_installment_start',
     ];
 
-    public function courseStudent()
+    public function courseStudent(): BelongsTo
     {
         return $this->belongsTo(CourseStudent::class, 'course_student_id');
     }
-    public function factors()
+
+    public function factors(): HasMany
     {
         return $this->hasMany(Factor::class, 'course_installments_id');
     }

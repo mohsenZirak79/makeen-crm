@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Report extends Model
 {
-    use HasFactory;
     protected $table = 'reports';
 
     protected $fillable = [
@@ -19,12 +19,12 @@ class Report extends Model
         'time_status',
     ];
 
-    public function courseStudent()
+    public function courseStudent(): BelongsTo
     {
         return $this->belongsTo(CourseStudent::class, 'course_student_id');
     }
 
-    public function subReports()
+    public function subReports(): HasMany
     {
         return $this->hasMany(SubReport::class, 'report_id');
     }

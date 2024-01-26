@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
@@ -10,8 +9,6 @@ use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
 class MentorWeeklyStudentScore extends Model
 {
-    use HasFactory;
-
     protected $table = 'mentor_weekly_student_score';
 
     protected $fillable = [
