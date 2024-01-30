@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('acquaintance_duration');
             $table->string('relation');
             $table->string('info');
-            $table->set('introduction_method',['1','2']);
+            $table->set('introduction_method',['instagram_makeen','instagram_friends','makeen_site','introducing_friends','telegram_channel','employment_site','other']);
             $table->timestamps();
 
             $table->foreign('user_data_id')->references('id')->on('user_data');

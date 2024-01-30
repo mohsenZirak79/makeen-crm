@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('military_service_data', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_data_id');
-            $table->set('service_status',['1','2']);
+            $table->set('service_status',['IRarmy','IRGC','IRpolice','IRDOD','extra','medical','educational','sponsorship','child_martyr','sacrifice','other']);
             $table->string('service_address');
             $table->timestamps();
 

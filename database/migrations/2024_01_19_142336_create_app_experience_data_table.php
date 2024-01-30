@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_data_id');
             $table->string('app_name');
             $table->integer('history');
-            $table->set('proficiency',['1','2']);
+            $table->set('proficiency',['weak','medium','good']);
             $table->boolean('project');
             $table->string('consideration');
             $table->timestamps();
