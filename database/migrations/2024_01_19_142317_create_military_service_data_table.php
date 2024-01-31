@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('military_service_data', function (Blueprint $table) {
+            $table->softDeletes();
             $table->id();
             $table->unsignedBigInteger('user_data_id');
             $table->set('service_status',['IRarmy','IRGC','IRpolice','IRDOD','extra','medical','educational','sponsorship','child_martyr','sacrifice','other']);

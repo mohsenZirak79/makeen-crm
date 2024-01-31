@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('app_experience_data', function (Blueprint $table) {
+            $table->softDeletes();
             $table->id();
             $table->unsignedBigInteger('user_data_id');
             $table->string('app_name');

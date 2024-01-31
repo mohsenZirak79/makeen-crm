@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('religion');
             $table->enum('gender', ['male', 'female', 'other']);
             $table->boolean('is_married');
-            $table->integer('child_count');
+            $table->integer('child_count')->nullable();
             $table->set('mbti', ['INTJ', 'ENTJ', 'INFJ', 'ENFJ', 'ISTJ', 'ESTJ', 'ISFJ', 'ESFJ', 'ISTP', 'ESTP', 'ISFP', 'ESFP', 'INTP', 'ENTP', 'INFP', 'ENFP']);
             $table->string('parent_phone_number');
             $table->string('emergency_phone_number');

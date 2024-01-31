@@ -11,6 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('foreign_languages_data', function (Blueprint $table) {
+            $table->softDeletes();
             $table->id();
             $table->unsignedBigInteger('user_data_id');
             $table->set('languages_name', ['english', 'french', 'german', 'spanish', 'turkey']);
