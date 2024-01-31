@@ -15,10 +15,10 @@ return new class extends Migration
             $table->softDeletes();
             $table->id();
             $table->unsignedBigInteger('user_data_id');
-            $table->string('diploma');
-            $table->json('associate_degree');
-            $table->json('bachelor_degree');
-            $table->json('master_degree');
+            $table->json('diploma')->nullable();
+            $table->json('associate_degree')->nullable();
+            $table->json('bachelor_degree')->nullable();
+            $table->json('master_degree')->nullable();
             $table->timestamps();
 
             $table->foreign('user_data_id')->references('id')->on('user_data');

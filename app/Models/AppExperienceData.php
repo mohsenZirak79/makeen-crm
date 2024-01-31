@@ -16,7 +16,7 @@ class AppExperienceData extends Model
         'history',
         'proficiency',
         'project',
-        'consideration'
+        'consideration',
     ];
 
     public function userData(): BelongsTo

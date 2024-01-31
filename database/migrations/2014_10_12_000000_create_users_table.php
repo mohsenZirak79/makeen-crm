@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->string('phone_number')->unique()->nullable();   // use for login
             $table->string('national_id')->unique()->nullable();
             $table->string('email')->unique()->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->timestamps();
         });
     }

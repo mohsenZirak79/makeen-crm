@@ -20,6 +20,7 @@ return new class extends Migration
             $table->float('course_length');
             $table->string('academy_name');
             $table->text('description');
+            $table->boolean('evidence');
             $table->timestamps();
 
             $table->foreign('user_data_id')->references('id')->on('user_data');

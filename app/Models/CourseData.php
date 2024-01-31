@@ -15,8 +15,9 @@ class CourseData extends Model
         'title',
         'start_date',
         'course_length',
-        'academy name',
-        'description'
+        'academy_name',
+        'description',
+        'evidence'
     ];
 
     public function userData(): BelongsTo

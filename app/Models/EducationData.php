@@ -18,6 +18,7 @@ class EducationData extends Model
         'master_degree'
     ];
     protected $casts = [
+        'diploma' => 'object',
         'associate_degree' => 'object',
         'bachelor_degree' => 'object',
         'master_degree' => 'object'
