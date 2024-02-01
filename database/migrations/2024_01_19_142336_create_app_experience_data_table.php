@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('history');
             $table->set('proficiency',['weak','medium','good']);
             $table->boolean('project');
-            $table->boolean('consideration');
+            $table->string('consideration');
             $table->timestamps();
 
             $table->foreign('user_data_id')->references('id')->on('user_data');

@@ -20,6 +20,11 @@ class UserData extends Model
         'representative_data_id'
     ];
 
+    protected $casts = [
+        'course_data_id' => 'array',
+        'app_experience_data_id' => 'array'
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

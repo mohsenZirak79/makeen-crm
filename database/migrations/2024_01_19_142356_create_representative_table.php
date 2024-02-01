@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_data_id');
             $table->string('name');
-            $table->string('acquaintance_duration');
+            $table->integer('acquaintance_duration');
             $table->string('relation');
             $table->string('info');
             $table->set('introduction_method',['instagram_makeen','instagram_friends','makeen_site','introducing_friends','telegram_channel','employment_site','other']);

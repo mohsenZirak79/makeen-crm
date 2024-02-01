@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_data_id');
             $table->set('service_status',['IRarmy','IRGC','IRpolice','IRDOD','extra','medical','educational','sponsorship','child_martyr','sacrifice','other']);
-            $table->string('service_address');
+            $table->string('service_address')->nullable();
             $table->timestamps();
 
             $table->foreign('user_data_id')->references('id')->on('user_data');

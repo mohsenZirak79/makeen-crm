@@ -11,14 +11,14 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('user_data', function (Blueprint $table) {
-            $table->unsignedBigInteger('personal_data_id');
-            $table->unsignedBigInteger('home_data_id');
-            $table->unsignedBigInteger('military_service_data_id');
-            $table->unsignedBigInteger('education_data_id');
-            $table->unsignedBigInteger('course_data_id');
-            $table->unsignedBigInteger('app_experience_data_id');
-            $table->unsignedBigInteger('foreign_languages_data_id');
-            $table->unsignedBigInteger('representative_data_id');
+            $table->unsignedBigInteger('personal_data_id')->nullable();
+            $table->unsignedBigInteger('home_data_id')->nullable();
+            $table->unsignedBigInteger('military_service_data_id')->nullable();
+            $table->unsignedBigInteger('education_data_id')->nullable();
+            $table->unsignedBigInteger('course_data_id')->nullable();
+            $table->unsignedBigInteger('app_experience_data_id')->nullable();
+            $table->unsignedBigInteger('foreign_languages_data_id')->nullable();
+            $table->unsignedBigInteger('representative_data_id')->nullable();
 
             $table->foreign('personal_data_id')->references('id')->on('personal_data');
             $table->foreign('home_data_id')->references('id')->on('home_data');
