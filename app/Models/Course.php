@@ -23,6 +23,11 @@ class Course extends Model
         'end_time',
     ];
 
+    protected $casts = [
+        'start_date' => 'date',
+        'end_date' => 'date',
+    ];
+
     public function mentor(): BelongsTo
     {
         return $this->belongsTo(User::class, 'mentor_id');
