@@ -21,6 +21,10 @@ class CourseInstallment extends Model
         'after_course_installment_start',
     ];
 
+    protected $casts = [
+        'after_course_installment_start' => 'date',
+    ];
+
     public function courseStudent(): BelongsTo
     {
         return $this->belongsTo(CourseStudent::class, 'course_student_id');
