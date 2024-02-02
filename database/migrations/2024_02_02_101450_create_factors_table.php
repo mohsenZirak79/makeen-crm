@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->foreignId('user_id')->nullable()->constrained('users');
             $table->unsignedBigInteger('total_amount');
             $table->unsignedBigInteger('amount_paid')->default(0);
-            $table->enum('status', ['pending', 'paid', 'overdue'])->default('pending');
+            $table->enum('status', ['close', 'pending', 'paid', 'overdue'])->default('close');
             $table->date('du_date');
             $table->timestamps();
         });
