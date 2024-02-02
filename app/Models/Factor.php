@@ -17,6 +17,9 @@ class Factor extends Model
         'status',
         'du_date',
     ];
+    protected $casts = [
+        'du_date' => 'date',
+    ];
 
     public function courseInstallment(): BelongsTo
     {
