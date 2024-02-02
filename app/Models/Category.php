@@ -17,7 +17,7 @@ class Category extends Model
 
     public function topic(): BelongsTo
     {
-        return $this->belongsTo(Category::class, 'topic_id');
+        return $this->belongsTo(Category::class, 'topic_id')->withDefault();
     }
 
     public function subcategories(): HasMany
