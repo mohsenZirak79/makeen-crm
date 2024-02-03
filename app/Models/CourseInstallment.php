@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class CourseInstallment extends Model
@@ -29,6 +30,11 @@ class CourseInstallment extends Model
     public function billable(): MorphMany
     {
         return $this->morphMany(Factor::class, 'billable');
+    }
+
+    public function course(): HasOneThrough
+    {
+        return $this->hasOneThrough(Course::class, CourseStudent::class, 'course_id', 'id', 'course_student_id', 'course_id');
     }
 
     public function courseStudent(): BelongsTo
