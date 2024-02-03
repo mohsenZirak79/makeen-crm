@@ -14,8 +14,8 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('student_id');
             $table->unsignedBigInteger('course_id');
-            $table->set('student_status',['1','2']);
-            $table->boolean('is_supplement');
+            $table->set('student_status', ['1', '2'])->default(1);
+            $table->boolean('is_supplement')->default(false);
             $table->timestamps();
 
             $table->foreign('student_id')->references('id')->on('users');
