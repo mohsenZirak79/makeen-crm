@@ -140,8 +140,8 @@ namespace App\Models{
  * @property int $course_number
  * @property int $mentor_id
  * @property int $student_count
- * @property string $start_date
- * @property string $end_date
+ * @property \Illuminate\Support\Carbon $start_date
+ * @property \Illuminate\Support\Carbon $end_date
  * @property string $start_time
  * @property string $end_time
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -218,7 +218,7 @@ namespace App\Models{
  * @property int $during_course_installment_amount
  * @property int $after_course_installment_count
  * @property int $after_course_installment_amount
- * @property string $after_course_installment_start
+ * @property \Illuminate\Support\Carbon $after_course_installment_start
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\CourseStudent $courseStudent
@@ -315,14 +315,16 @@ namespace App\Models{
  * App\Models\Factor
  *
  * @property int $id
- * @property int|null $course_installments_id
- * @property int|null $user_id
+ * @property string $billable_type
+ * @property int $billable_id
  * @property int $total_amount
  * @property int $amount_paid
  * @property string $status
  * @property \Illuminate\Support\Carbon $du_date
+ * @property string|null $description
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $billable
  * @property-read \App\Models\CourseInstallment|null $courseInstallment
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Transaction> $transactions
  * @property-read int|null $transactions_count
@@ -330,14 +332,15 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Factor newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Factor query()
  * @method static \Illuminate\Database\Eloquent\Builder|Factor whereAmountPaid($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Factor whereCourseInstallmentsId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Factor whereBillableId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Factor whereBillableType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Factor whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Factor whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Factor whereDuDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Factor whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Factor whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Factor whereTotalAmount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Factor whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Factor whereUserId($value)
  */
 	class Factor extends \Eloquent {}
 }
@@ -625,7 +628,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Report whereAdminComment($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Report whereCourseStudentId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Report whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Report whereDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Report whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Report whereMentorComment($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Report whereOverallStatus($value)
@@ -728,6 +730,8 @@ namespace App\Models{
  * @property-read int|null $course_student_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Course> $courses
  * @property-read int|null $courses_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Factor> $factors
+ * @property-read int|null $factors_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
  * @property-read \App\Models\MentorData|null $teacherData
