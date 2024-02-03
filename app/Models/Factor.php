@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Factor extends Model
 {
@@ -20,6 +21,11 @@ class Factor extends Model
     protected $casts = [
         'du_date' => 'date',
     ];
+
+    public function billable(): MorphTo
+    {
+        return $this->morphTo('billable');
+    }
 
     public function courseInstallment(): BelongsTo
     {

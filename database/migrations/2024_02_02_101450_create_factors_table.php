@@ -12,8 +12,7 @@ return new class extends Migration {
     {
         Schema::create('factors', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('course_installments_id')->nullable()->constrained('course_installments');
-            $table->foreignId('user_id')->nullable()->constrained('users');
+            $table->morphs('billable');
             $table->unsignedBigInteger('total_amount');
             $table->unsignedBigInteger('amount_paid')->default(0);
             $table->enum('status', ['close', 'pending', 'paid', 'overdue'])->default('close');
@@ -28,10 +27,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::table('factors', function (Blueprint $table) {
-            $table->dropForeign('factors_course_installments_id_foreign');
-            $table->dropForeign('factors_user_id_foreign');
-        });
         Schema::dropIfExists('factors');
     }
 };

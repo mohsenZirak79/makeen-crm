@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class CourseInstallment extends Model
 {
@@ -24,6 +25,11 @@ class CourseInstallment extends Model
     protected $casts = [
         'after_course_installment_start' => 'date',
     ];
+
+    public function billable(): MorphMany
+    {
+        return $this->morphMany(Factor::class, 'billable');
+    }
 
     public function courseStudent(): BelongsTo
     {
