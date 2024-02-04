@@ -73,14 +73,14 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $name
- * @property int $topic_id
+ * @property int|null $topic_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Course> $courses
  * @property-read int|null $courses_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Category> $subcategories
  * @property-read int|null $subcategories_count
- * @property-read Category $topic
+ * @property-read Category|null $topic
  * @method static \Illuminate\Database\Eloquent\Builder|Category newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Category newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Category query()
@@ -149,6 +149,8 @@ namespace App\Models{
  * @property-read \App\Models\Category $category
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Classroom> $classrooms
  * @property-read int|null $classrooms_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\CourseInstallment> $courseInstallments
+ * @property-read int|null $course_installments_count
  * @property-read \App\Models\User $mentor
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $students
  * @property-read int|null $students_count
@@ -212,7 +214,7 @@ namespace App\Models{
  * App\Models\CourseInstallment
  *
  * @property int $id
- * @property int $course_student_id
+ * @property int|null $course_student_id
  * @property int $tuition
  * @property int $during_course_installment_count
  * @property int $during_course_installment_amount
@@ -221,7 +223,10 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon $after_course_installment_start
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\CourseStudent $courseStudent
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Factor> $billable
+ * @property-read int|null $billable_count
+ * @property-read \App\Models\Course|null $course
+ * @property-read \App\Models\CourseStudent|null $courseStudent
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Factor> $factors
  * @property-read int|null $factors_count
  * @method static \Illuminate\Database\Eloquent\Builder|CourseInstallment newModelQuery()
@@ -252,7 +257,9 @@ namespace App\Models{
  * @property int $is_supplement
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property int $installment_data_id
+ * @property int|null $installment_data_id
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Factor> $billable
+ * @property-read int|null $billable_count
  * @property-read \App\Models\Course $course
  * @property-read \App\Models\CourseInstallment|null $courseInstallment
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\LeaveRequest> $leaveRequests
@@ -322,6 +329,7 @@ namespace App\Models{
  * @property string $status
  * @property \Illuminate\Support\Carbon $du_date
  * @property string|null $description
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $billable
@@ -330,17 +338,21 @@ namespace App\Models{
  * @property-read int|null $transactions_count
  * @method static \Illuminate\Database\Eloquent\Builder|Factor newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Factor newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Factor onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Factor query()
  * @method static \Illuminate\Database\Eloquent\Builder|Factor whereAmountPaid($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Factor whereBillableId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Factor whereBillableType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Factor whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Factor whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Factor whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Factor whereDuDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Factor whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Factor whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Factor whereTotalAmount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Factor whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Factor withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Factor withoutTrashed()
  */
 	class Factor extends \Eloquent {}
 }
@@ -628,6 +640,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Report whereAdminComment($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Report whereCourseStudentId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Report whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Report whereDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Report whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Report whereMentorComment($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Report whereOverallStatus($value)
@@ -714,7 +727,6 @@ namespace App\Models{
 /**
  * App\Models\User
  *
- * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property int $id
  * @property string|null $first_name
  * @property string|null $last_name
@@ -723,6 +735,7 @@ namespace App\Models{
  * @property string|null $national_id
  * @property string|null $email
  * @property mixed|null $password
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\AdminData|null $adminData
