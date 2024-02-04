@@ -30,6 +30,20 @@ class Factor extends Model
         return $this->morphTo('billable');
     }
 
+    public function user(): ?User
+    {
+        if (isset($this->billable)) {
+            if (is_a($this->billable, User::class)) {
+                return $this->billable;
+            } elseif (is_a($this->billable, CourseStudent::class)) {
+                return $this->billable->student;
+            } elseif (is_a($this->billable, CourseInstallment::class)) {
+                return $this->billable->courseStudent->student;
+            }
+        }
+        return null;
+    }
+
     public function courseInstallment(): BelongsTo
     {
         return $this->belongsTo(CourseInstallment::class, 'course_installments_id');
