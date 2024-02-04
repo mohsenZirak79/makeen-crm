@@ -21,6 +21,9 @@ class CourseFactorsInitiator
      */
     public function handle(CourseAddedEvent $event): void
     {
-        //
+        $courseInstallments = $event->course->courseInstallments;
+        foreach ($courseInstallments as $courseInstallment) {
+            (new \App\Services\FactorMaker\UserCourseInstallment($courseInstallment))->makeFactors();
+        }
     }
 }
