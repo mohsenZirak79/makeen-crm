@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->enum('status', ['close', 'pending', 'paid', 'overdue'])->default('close');
             $table->date('du_date');
             $table->string('description')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
