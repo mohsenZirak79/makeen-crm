@@ -13,6 +13,11 @@ class Transaction extends Model
         'factors_id',
         'amount',
         'status',
+        'details'
+    ];
+
+    protected $casts = [
+        'details' => 'object',
     ];
 
     public function factor(): BelongsTo
