@@ -30,11 +30,37 @@ class CustomPathGenerator implements PathGenerator
 
     public function getPathForConversions(Media $media): string
     {
-        // TODO: Implement getPathForConversions() method.
+        switch ($media->model_type) {
+            case Factor::class:
+            {
+                return 'factor'.DIRECTORY_SEPARATOR.'image'.DIRECTORY_SEPARATOR;
+            }
+            case User::class:
+            {
+                return 'user'.DIRECTORY_SEPARATOR.'avatar'.DIRECTORY_SEPARATOR;
+            }
+            default:
+            {
+                return 'unknown'.DIRECTORY_SEPARATOR.'files'.DIRECTORY_SEPARATOR;
+            }
+        }
     }
 
     public function getPathForResponsiveImages(Media $media): string
     {
-        // TODO: Implement getPathForResponsiveImages() method.
+        switch ($media->model_type) {
+            case Factor::class:
+            {
+                return 'factor'.DIRECTORY_SEPARATOR.'image'.DIRECTORY_SEPARATOR;
+            }
+            case User::class:
+            {
+                return 'user'.DIRECTORY_SEPARATOR.'avatar'.DIRECTORY_SEPARATOR;
+            }
+            default:
+            {
+                return 'unknown'.DIRECTORY_SEPARATOR.'files'.DIRECTORY_SEPARATOR;
+            }
+        }
     }
 }
