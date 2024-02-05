@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Transaction\ChangeTransactionStatusRequest;
 use App\Http\Requests\Transaction\StoreTransactionRequest;
 use App\Http\Requests\Transaction\UpdateTransactionRequest;
 use App\Http\Resources\Transaction\TransactionResource;
@@ -67,5 +68,17 @@ class TransactionController extends Controller
     {
         $transaction->delete();
         return response()->noContent();
+    }
+
+    /**
+     * Change the payment status of the transaction
+     * @param  ChangeTransactionStatusRequest  $request
+     * @param  Transaction  $transaction
+     * @return TransactionResource
+     */
+    public function changePaymentStatus(ChangeTransactionStatusRequest $request, Transaction $transaction)
+    {
+        $transaction->update($request->validated());
+        return TransactionResource::make($transaction);
     }
 }
