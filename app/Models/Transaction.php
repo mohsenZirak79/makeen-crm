@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Transaction extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, InteractsWithMedia;
+
     protected $table = 'transactions';
 
     protected $fillable = [
