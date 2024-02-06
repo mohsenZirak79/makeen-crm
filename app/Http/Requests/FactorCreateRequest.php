@@ -11,8 +11,8 @@ class FactorCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'total_amount' => ['required', 'integer'],
-            'amount_paid' => ['nullable', 'integer'],
+            'total_amount' => ['required', 'integer', 'min:0'],
+            'amount_paid' => ['nullable', 'integer', 'min:0'],
             'du_date' => ['required', 'date'],
             'description' => ['nullable'],
         ];
