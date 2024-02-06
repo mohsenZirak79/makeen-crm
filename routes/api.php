@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 require __DIR__.'/config/config.php';
 require __DIR__.'/user/user.php';
+require __DIR__.'/transaction/transaction.php';
