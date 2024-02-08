@@ -6,6 +6,7 @@ use App\Http\Requests\Transaction\ChangeTransactionStatusRequest;
 use App\Http\Requests\Transaction\StoreTransactionRequest;
 use App\Http\Requests\Transaction\UpdateTransactionRequest;
 use App\Http\Resources\Transaction\TransactionResource;
+use App\Models\Factor;
 use App\Models\Transaction;
 use App\Services\ImageService\ImageServiceProvider;
 use Illuminate\Http\Response;
@@ -80,5 +81,20 @@ class TransactionController extends Controller
     {
         $transaction->update($request->validated());
         return TransactionResource::make($transaction);
+    }
+
+    /**
+     * @param  string  $details
+     * @param  int  $amount
+     * @param  Factor  $factor
+     * @return Factor
+     */
+    public static function createFromFactor(string $details, int $amount, Factor $factor): Factor
+    {
+        return $factor->transactions()->create([
+            'details' => $details,
+            'amount' => $amount,
+            'status' => 'paid'
+        ]);
     }
 }
