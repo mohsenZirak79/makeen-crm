@@ -22,7 +22,14 @@ class FactorController extends Controller
 
     public function create(FactorCreateRequest $request, User $user)
     {
-        return response()->json($user->factors()->create($request->validated()));
+        $factor = $user->factors()->create([
+            'amount_paid' => $request->amount_paid,
+            'total_amount' => $request->amount_paid,
+            'du_date' => $request->du_date
+        ]);
+        if (isset($request->amount_paid))
+            TransactionController::createFromFactor('test', $request->amount_paid, $factor);
+        return response()->json(FactorResource::make($factor));
     }
 
     public function update(Factor $factor)
