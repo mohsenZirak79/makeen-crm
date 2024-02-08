@@ -12,10 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('mentor_data', function (Blueprint $table) {
+            $table->softDeletes();
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('work_address');
-            $table->integer('education_degree_id');
+            $table->string('education_degree');
             $table->string('education_degree_university');
             $table->string('representative');
             $table->string('skills');

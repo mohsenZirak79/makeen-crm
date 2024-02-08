@@ -44,7 +44,7 @@ class User extends Authenticatable
         return $this->hasOne(AdminData::class);
     }
 
-    public function teacherData(): HasOne
+    public function MentorData(): HasOne
     {
         return $this->hasOne(MentorData::class);
     }

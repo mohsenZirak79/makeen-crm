@@ -85,6 +85,8 @@ class AdminController extends Controller
     {
         $user = User::findOrFail($id);
 
+        $user->load(['AdminData']);
+
         return response()->json([
             'user' => $user
         ]);

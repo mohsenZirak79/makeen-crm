@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\User\StudentController;
 use \App\Http\Controllers\User\AdminController;
+use \App\Http\Controllers\User\MentorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,5 +33,15 @@ Route::prefix('/Admin/')->name('Admin.')->group(function () {
     Route::put('update', [AdminController::class, 'update'])->name('update');
     Route::get('show/{id}', [AdminController::class, 'show'])->name('show');
     Route::delete('delete/{id}', [AdminController::class, 'delete'])->name('delete');
+
+});
+
+Route::prefix('/Mentor/')->name('Mentor.')->group(function () {
+
+    Route::post('create', [MentorController::class, 'create'])->name('create');
+    Route::put('edit/{id}', [MentorController::class, 'edit'])->name('edit');
+    Route::put('update', [MentorController::class, 'update'])->name('update');
+    Route::get('show/{id}', [MentorController::class, 'show'])->name('show');
+    Route::delete('delete/{id}', [MentorController::class, 'delete'])->name('delete');
 
 });

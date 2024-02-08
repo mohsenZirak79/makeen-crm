@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('admin_data', function (Blueprint $table) {
+            $table->softDeletes();
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('work_position');
