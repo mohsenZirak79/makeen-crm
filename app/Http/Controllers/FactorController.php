@@ -39,6 +39,7 @@ class FactorController extends Controller
 
     public function delete(Factor $factor)
     {
-
+        $factor->delete();
+        return response()->noContent();
     }
 }
