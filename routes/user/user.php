@@ -15,18 +15,17 @@ use \App\Http\Controllers\User\MentorController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::prefix('/student/')->name('student.')->group(function () {
+Route::prefix('/student/')->name('student.')->middleware('auth:sanctum')->group(function () {
 
     Route::post('create', [StudentController::class, 'create'])->name('create');
     Route::put('edit/{id}', [StudentController::class, 'edit'])->name('edit');
     Route::put('update', [StudentController::class, 'update'])->name('update');
     Route::get('show/{id}', [StudentController::class, 'show'])->name('show');
     Route::delete('delete/{id}', [StudentController::class, 'delete'])->name('delete');
-
 });
 
 
-Route::prefix('/Admin/')->name('Admin.')->group(function () {
+Route::prefix('/Admin/')->name('Admin.')->middleware('auth:sanctum')->group(function () {
 
     Route::post('create', [AdminController::class, 'create'])->name('create');
     Route::put('edit/{id}', [AdminController::class, 'edit'])->name('edit');
@@ -36,7 +35,7 @@ Route::prefix('/Admin/')->name('Admin.')->group(function () {
 
 });
 
-Route::prefix('/Mentor/')->name('Mentor.')->group(function () {
+Route::prefix('/Mentor/')->name('Mentor.')->middleware('auth:sanctum')->group(function () {
 
     Route::post('create', [MentorController::class, 'create'])->name('create');
     Route::put('edit/{id}', [MentorController::class, 'edit'])->name('edit');
