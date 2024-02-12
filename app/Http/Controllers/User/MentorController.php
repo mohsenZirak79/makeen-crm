@@ -26,8 +26,8 @@ class MentorController extends Controller
         $mentor_data = MentorData::create([
             'user_id' => $user->id,
             'work_address' => $request->work_address,
-            'education_degree' => $request->education_degree,
-            'education_degree_university' => $request->education_degree_university,
+            'global_education_degree_id' => $request->education_degree,
+            'global_education_major_id' => $request->education_degree,
             'representative' => $request->representative,
             'skills' => json_encode($request->skills),
             'work_experience' => json_encode($request->work_experience),
@@ -57,8 +57,8 @@ class MentorController extends Controller
         $mentor_data->update([
             'user_id' => $user->id,
             'work_address' => $request->work_address,
-            'education_degree' => $request->education_degree,
-            'education_degree_university' => $request->education_degree_university,
+            'global_education_degree_id' => $request->education_degree,
+            'global_education_major_id' => $request->education_degree,
             'representative' => $request->representative,
             'skills' => json_encode($request->skills),
             'work_experience' => json_encode($request->work_experience),
