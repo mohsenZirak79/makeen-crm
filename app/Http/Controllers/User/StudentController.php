@@ -78,7 +78,6 @@ class StudentController extends Controller
             ]);
         }
 
-        $CourseData = [];
         if ($request->course_data) {
             foreach ($request->course_data as $courseData) {
                 $CourseData = CourseData::create([
@@ -93,7 +92,6 @@ class StudentController extends Controller
             }
         }
 
-        $AppExperienceData = [];
         if ($request->app_experience_data) {
             foreach ($request->app_experience_data as $appExperienceData) {
                 $AppExperienceData = AppExperienceData::create([
@@ -135,8 +133,6 @@ class StudentController extends Controller
             'home_data_id' => $home_data->id,
             'military_service_data_id' => $military_service_data->id,
             'education_data_id' => $education_data->id,
-            'course_data_id' => $CourseData->id,
-            'app_experience_data_id' => $AppExperienceData->id,
             'foreign_languages_data_id' => $ForeignLanguagesData->id,
             'representative_data_id' => $RepresentativeData->id,
         ]);
@@ -263,8 +259,6 @@ class StudentController extends Controller
             'home_data_id' => $home_data->id,
             'military_service_data_id' => $military_service_data->id,
             'education_data_id' => $education_data->id,
-            'course_data_id' => $course_data->id,
-            'app_experience_data_id' => $app_experience_data->id,
             'foreign_languages_data_id' => $foreign_languages_data->id,
             'representative_data_id' => $representative_data->id,
         ]);
@@ -286,7 +280,7 @@ class StudentController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $user = Auth::user();
         $userData = $user->userData;
@@ -372,8 +366,6 @@ class StudentController extends Controller
             'home_data_id' => $home_data->id ?? null,
             'military_service_data_id' => $military_service_data->id ?? null,
             'education_data_id' => $education_data->id ?? null,
-            'course_data_id' => $course_data->id ?? null,
-            'app_experience_data_id' => $app_experience_data->id ?? null,
             'foreign_languages_data_id' => $foreign_languages_data->id ?? null,
             'representative_data_id' => $representative_data->id ?? null,
         ]);

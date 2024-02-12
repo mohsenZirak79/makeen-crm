@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CourseData extends Model
@@ -20,8 +21,8 @@ class CourseData extends Model
         'evidence'
     ];
 
-    public function userData(): BelongsTo
+    public function userData(): HasOne
     {
-        return $this->belongsTo(UserData::class);
+        return $this->hasOne(UserData::class);
     }
 }

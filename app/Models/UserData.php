@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class UserData extends Model
@@ -50,14 +51,14 @@ class UserData extends Model
         return $this->hasOne(EducationData::class);
     }
 
-    public function courseData(): HasOne
+    public function courseData(): HasMany
     {
-        return $this->hasOne(CourseData::class);
+        return $this->hasMany(CourseData::class);
     }
 
-    public function appExperienceData(): HasOne
+    public function appExperienceData(): HasMany
     {
-        return $this->hasOne(AppExperienceData::class);
+        return $this->hasMany(AppExperienceData::class);
     }
 
     public function foreignLanguagesData(): HasOne
