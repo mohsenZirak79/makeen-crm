@@ -3,17 +3,16 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\EducationData;
+use App\Http\Requests\User\MentorCreateEditRequest;
 use App\Models\MentorData;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+
 
 
 class MentorController extends Controller
 {
-    public function create(Request $request)
+    public function create(MentorCreateEditRequest $request)
     {
         $user = User::create([
             'first_name' => $request->first_name,
@@ -26,8 +25,8 @@ class MentorController extends Controller
         $mentor_data = MentorData::create([
             'user_id' => $user->id,
             'work_address' => $request->work_address,
-            'global_education_degree_id' => $request->education_degree,
-            'global_education_major_id' => $request->education_degree,
+            'global_education_degree_id' => $request->global_education_degree_id,
+            'global_education_major_id' => $request->global_education_major_id,
             'representative' => $request->representative,
             'skills' => json_encode($request->skills),
             'work_experience' => json_encode($request->work_experience),
@@ -42,7 +41,7 @@ class MentorController extends Controller
         ]);
     }
 
-    public function edit(Request $request, $id)
+    public function edit(MentorCreateEditRequest $request, $id)
     {
         $user = User::findOrFail($id);
         $user->update([

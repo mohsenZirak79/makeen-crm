@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\AdminCreateEditRequest;
+use App\Http\Requests\User\AdminUpdateRequest;
 use App\Models\AdminData;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -11,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    public function create(Request $request)
+    public function create(AdminCreateEditRequest $request)
     {
         $user = User::create([
             'first_name' => $request->first_name,
@@ -35,7 +37,7 @@ class AdminController extends Controller
         ]);
     }
 
-    public function edit(Request $request, $id)
+    public function edit(AdminCreateEditRequest $request, $id)
     {
         $user = User::findOrFail($id);
         $user->update([
@@ -61,7 +63,7 @@ class AdminController extends Controller
         ]);
     }
 
-    public function update(Request $request)
+    public function update(AdminUpdateRequest $request)
     {
         $user = Auth::user();
 

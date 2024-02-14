@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->string('last_name')->nullable();
             $table->string('father_name')->nullable();
             $table->string('phone_number')->unique()->nullable();   // use for login
-            $table->integer('national_id')->unique()->nullable();
+            $table->bigInteger('national_id')->unique()->nullable();
             $table->string('email')->unique()->nullable();
             $table->string('password')->nullable();
             $table->timestamps();

@@ -13,7 +13,8 @@ class MentorData extends Model
     protected $fillable = [
         'user_id',
         'work_address',
-        'education_degree',
+        'global_education_degree_id',
+        'global_education_major_id',
         'education_degree_university',
         'representative',
         'skills',
