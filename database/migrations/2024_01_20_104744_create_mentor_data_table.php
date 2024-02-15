@@ -12,17 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('mentor_data', function (Blueprint $table) {
+            $table->softDeletes();
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('work_address');
-            $table->integer('education_degree_id');
-            $table->string('education_degree_university');
+            $table->unsignedBigInteger('global_education_degree_id');
+            $table->unsignedBigInteger('global_education_major_id');
             $table->string('representative');
             $table->string('skills');
             $table->string('work_experience');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('global_education_degree_id')->references('id')->on('global_education_degree');
+            $table->foreign('global_education_major_id')->references('id')->on('global_education_major');
         });
     }
 

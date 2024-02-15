@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class AppExperienceData extends Model
@@ -19,8 +20,8 @@ class AppExperienceData extends Model
         'consideration',
     ];
 
-    public function userData(): BelongsTo
+    public function userData(): HasOne
     {
-        return $this->belongsTo(UserData::class);
+        return $this->hasOne(UserData::class);
     }
 }

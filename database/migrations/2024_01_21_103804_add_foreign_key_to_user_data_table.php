@@ -15,8 +15,6 @@ return new class extends Migration {
             $table->unsignedBigInteger('home_data_id')->nullable();
             $table->unsignedBigInteger('military_service_data_id')->nullable();
             $table->unsignedBigInteger('education_data_id')->nullable();
-            $table->unsignedBigInteger('course_data_id')->nullable();
-            $table->unsignedBigInteger('app_experience_data_id')->nullable();
             $table->unsignedBigInteger('foreign_languages_data_id')->nullable();
             $table->unsignedBigInteger('representative_data_id')->nullable();
 
@@ -24,8 +22,6 @@ return new class extends Migration {
             $table->foreign('home_data_id')->references('id')->on('home_data');
             $table->foreign('military_service_data_id')->references('id')->on('military_service_data');
             $table->foreign('education_data_id')->references('id')->on('education_data');
-            $table->foreign('course_data_id')->references('id')->on('course_data');
-            $table->foreign('app_experience_data_id')->references('id')->on('app_experience_data');
             $table->foreign('foreign_languages_data_id')->references('id')->on('foreign_languages_data');
             $table->foreign('representative_data_id')->references('id')->on('representative_data');
 
