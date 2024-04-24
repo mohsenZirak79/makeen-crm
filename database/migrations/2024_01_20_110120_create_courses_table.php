@@ -19,8 +19,6 @@ return new class extends Migration
             $table->integer('student_count');
             $table->date('start_date');
             $table->date('end_date');
-            $table->time('start_time');
-            $table->time('end_time');
             $table->timestamps();
 
             $table->foreign('mentor_id')->references('id')->on('users');
