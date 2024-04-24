@@ -20,3 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 require __DIR__.'/config/config.php';
 require __DIR__.'/user/user.php';
+require __DIR__.'/category/category.php';
+require __DIR__.'/course/course.php';
