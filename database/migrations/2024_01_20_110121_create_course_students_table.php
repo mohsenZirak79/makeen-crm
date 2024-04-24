@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('student_id');
             $table->unsignedBigInteger('course_id');
-            $table->set('student_status',['1','2']);
+            $table->set('student_status',['active']);
             $table->boolean('is_supplement');
             $table->timestamps();
 

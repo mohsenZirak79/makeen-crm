@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Course extends Model
 {
@@ -19,8 +20,6 @@ class Course extends Model
         'student_count',
         'start_date',
         'end_date',
-        'start_time',
-        'end_time',
     ];
 
     public function mentor(): BelongsTo
@@ -35,11 +34,20 @@ class Course extends Model
 
     public function students(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, CourseStudent::class, 'course_id', 'student_id');
+        return $this->belongsToMany(User::class, CourseStudent::class, 'course_id', 'student_id')
+            ->withPivot('student_status', 'is_supplement');
     }
 
-    public function classrooms(): BelongsToMany
+    public function courseDays(): hasMany
     {
-        return $this->belongsToMany(Classroom::class, 'course_days');
+        return $this->hasMany(CourseDay::class);
+    }
+
+    public function days()
+    {
+        foreach ($this->courseDays as $courseDay) {
+            $days[] = $courseDay->week_day;
+        }
+        return $days ?? null;
     }
 }

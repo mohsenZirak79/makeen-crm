@@ -21,7 +21,6 @@ class CourseStudent extends Pivot
         'course_id',
         'student_status',
         'is_supplement',
-        'installment_data_id',
     ];
 
     public function student(): BelongsTo
@@ -34,9 +33,9 @@ class CourseStudent extends Pivot
         return $this->belongsTo(Course::class, 'course_id');
     }
 
-    public function courseInstallment(): HasOne
+    public function installment(): HasOne
     {
-        return $this->hasOne(CourseInstallment::class, 'installment_data_id');
+        return $this->hasOne(CourseInstallment::class, 'course_student_id');
     }
 
     public function leaveRequests(): HasMany

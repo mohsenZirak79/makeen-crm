@@ -18,7 +18,8 @@ class CourseInstallment extends Model
         'during_course_installment_amount',
         'after_course_installment_count',
         'after_course_installment_amount',
-        'after_course_installment_start',
+        'start_date',
+        'end_date'
     ];
 
     public function courseStudent(): BelongsTo

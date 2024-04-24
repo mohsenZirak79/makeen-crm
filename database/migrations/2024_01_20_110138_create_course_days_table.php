@@ -13,14 +13,12 @@ return new class extends Migration {
         Schema::create('course_days', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('course_id');
-            $table->unsignedBigInteger('classroom_id');
-            $table->set('week_day',['1','2']);
+            $table->set('week_day',['1','2','3','4','5','6','7']);
             $table->time('start_time');
             $table->time('end_time');
             $table->timestamps();
 
             $table->foreign('course_id')->references('id')->on('courses');
-            $table->foreign('classroom_id')->references('id')->on('classrooms');
         });
     }
 
