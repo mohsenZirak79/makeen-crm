@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('admin_data', function (Blueprint $table) {
-            $table->softDeletes();
+        Schema::create('global_education_major', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->string('work_position');
-            $table->timestamps();
+            $table->unsignedBigInteger('global_education_degree_id');
+            $table->text('title');
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('global_education_degree_id')->references('id')->on('global_education_degree');
+            $table->timestamps();
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('admin_data');
+        Schema::dropIfExists('global_education_major');
     }
 };

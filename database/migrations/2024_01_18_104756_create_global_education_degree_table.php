@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('education_degree', function (Blueprint $table) {
+        Schema::create('global_education_degree', function (Blueprint $table) {
             $table->id();
-            $table->string('data');
+            $table->string('title');
             $table->timestamps();
         });
     }
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('education_degree');
+        Schema::dropIfExists('global_education_degree');
     }
 };

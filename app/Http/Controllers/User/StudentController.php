@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\StudentCreateEditRequest;
+use App\Http\Requests\User\StudentUpdateRequest;
 use App\Models\AppExperienceData;
 use App\Models\CourseData;
 use App\Models\EducationData;
@@ -20,7 +22,7 @@ use Illuminate\Support\Facades\Auth;
 class StudentController extends Controller
 {
 
-    public function create(Request $request)
+    public function create(StudentCreateEditRequest $request)
     {
         $user = User::create([
             'first_name' => $request->user['first_name'],
@@ -36,20 +38,20 @@ class StudentController extends Controller
             'user_id' => $user->id
         ]);
 
-        if ($request->personal_data) {
-            $personal_data = PersonalData::create([
-                'user_data_id' => $userData->id,
-                'birth_place' => $request->personal_data['birth_place'],
-                'birth_date' => $request->personal_data['birth_date'],
-                'religion' => $request->personal_data['religion'],
-                'gender' => $request->personal_data['gender'],
-                'is_married' => $request->personal_data['is_married'],
-                'child_count' => $request->personal_data['child_count'],
-                'mbti' => $request->personal_data['mbti'],
-                'parent_phone_number' => $request->personal_data['parent_phone_number'],
-                'emergency_phone_number' => $request->personal_data['emergency_phone_number'],
-            ]);
-        }
+
+        $personal_data = PersonalData::create([
+            'user_data_id' => $userData->id,
+            'birth_place' => $request->personal_data['birth_place'],
+            'birth_date' => $request->personal_data['birth_date'],
+            'religion' => $request->personal_data['religion'],
+            'gender' => $request->personal_data['gender'],
+            'is_married' => $request->personal_data['is_married'],
+            'child_count' => $request->personal_data['child_count'],
+            'mbti' => $request->personal_data['mbti'],
+            'parent_phone_number' => $request->personal_data['parent_phone_number'],
+            'emergency_phone_number' => $request->personal_data['emergency_phone_number'],
+        ]);
+
 
         if ($request->home_data) {
             $home_data = HomeData::create([
@@ -78,7 +80,6 @@ class StudentController extends Controller
             ]);
         }
 
-        $CourseData = [];
         if ($request->course_data) {
             foreach ($request->course_data as $courseData) {
                 $CourseData = CourseData::create([
@@ -93,7 +94,6 @@ class StudentController extends Controller
             }
         }
 
-        $AppExperienceData = [];
         if ($request->app_experience_data) {
             foreach ($request->app_experience_data as $appExperienceData) {
                 $AppExperienceData = AppExperienceData::create([
@@ -135,8 +135,6 @@ class StudentController extends Controller
             'home_data_id' => $home_data->id,
             'military_service_data_id' => $military_service_data->id,
             'education_data_id' => $education_data->id,
-            'course_data_id' => $CourseData->id,
-            'app_experience_data_id' => $AppExperienceData->id,
             'foreign_languages_data_id' => $ForeignLanguagesData->id,
             'representative_data_id' => $RepresentativeData->id,
         ]);
@@ -149,7 +147,7 @@ class StudentController extends Controller
         ]);
     }
 
-    public function edit(Request $request, $id)
+    public function edit(StudentCreateEditRequest $request, $id)
     {
         $user = User::findOrFail($id);
 
@@ -165,7 +163,6 @@ class StudentController extends Controller
 
         $userData = UserData::findOrFail($user->id);
 
-        if ($request->personal_data) {
             $personal_data = PersonalData::findOrFail($userData->personal_data_id);
             $personal_data->update([
                 'birth_place' => $request->personal_data['birth_place'],
@@ -178,7 +175,7 @@ class StudentController extends Controller
                 'parent_phone_number' => $request->personal_data['parent_phone_number'],
                 'emergency_phone_number' => $request->personal_data['emergency_phone_number'],
             ]);
-        }
+
 
         if ($request->home_data) {
             $home_data = HomeData::findOrFail($userData->home_data_id);
@@ -263,8 +260,6 @@ class StudentController extends Controller
             'home_data_id' => $home_data->id,
             'military_service_data_id' => $military_service_data->id,
             'education_data_id' => $education_data->id,
-            'course_data_id' => $course_data->id,
-            'app_experience_data_id' => $app_experience_data->id,
             'foreign_languages_data_id' => $foreign_languages_data->id,
             'representative_data_id' => $representative_data->id,
         ]);
@@ -286,7 +281,7 @@ class StudentController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(StudentUpdateRequest $request)
     {
         $user = Auth::user();
         $userData = $user->userData;
@@ -372,8 +367,6 @@ class StudentController extends Controller
             'home_data_id' => $home_data->id ?? null,
             'military_service_data_id' => $military_service_data->id ?? null,
             'education_data_id' => $education_data->id ?? null,
-            'course_data_id' => $course_data->id ?? null,
-            'app_experience_data_id' => $app_experience_data->id ?? null,
             'foreign_languages_data_id' => $foreign_languages_data->id ?? null,
             'representative_data_id' => $representative_data->id ?? null,
         ]);
