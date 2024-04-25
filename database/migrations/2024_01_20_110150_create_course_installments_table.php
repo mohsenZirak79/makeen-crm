@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('course_installments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('course_student_id');
+            $table->unsignedBigInteger('course_student_id')->nullable();
             $table->integer('tuition');
             $table->integer('during_course_installment_count');
             $table->integer('during_course_installment_amount');

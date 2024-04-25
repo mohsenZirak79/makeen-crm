@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class CourseStudent extends Pivot
@@ -22,6 +23,11 @@ class CourseStudent extends Pivot
         'student_status',
         'is_supplement',
     ];
+
+    public function billable(): MorphMany
+    {
+        return $this->morphMany(Factor::class, 'billable');
+    }
 
     public function student(): BelongsTo
     {
