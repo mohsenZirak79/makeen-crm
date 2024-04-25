@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group([
     'as' => 'factor.',
-    'prefix' => 'prefix',
+    'prefix' => 'factor',
     'middleware' => ['auth:sanctum']
 ], function () {
     Route::get('/', [FactorController::class, 'index'])->name('index');
