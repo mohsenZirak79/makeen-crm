@@ -12,7 +12,7 @@ class PermissionSeeder extends Seeder
      */
     public function run(): void
     {
-        $permissions = [
+        $permissions = collect([
             'student.create',
             'student.show',
             'student.edit',
@@ -28,7 +28,9 @@ class PermissionSeeder extends Seeder
             'mentor.edit',
             'mentor.update',
             'mentor.delete',
-        ];
-        Permission::create($permissions);
+        ]);
+        $permissions->map(function ($permission) {
+            Permission::create(['name' => $permission]);
+        });
     }
 }
