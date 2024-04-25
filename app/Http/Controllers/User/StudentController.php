@@ -24,6 +24,12 @@ class StudentController extends Controller
 
     public function create(StudentCreateEditRequest $request)
     {
+        $existingUser = User::where('email', $request->user['email'])->first();
+
+        if ($existingUser) {
+            return response()->json(['message' => 'This user is already registered'], 422);
+        }
+
         $user = User::create([
             'first_name' => $request->user['first_name'],
             'last_name' => $request->user['last_name'],

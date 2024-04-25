@@ -25,10 +25,10 @@ class CourseUpdateRequest extends FormRequest
     {
         return [
             'sub_category_id' => 'required|exists:categories,id',
-            'mentor_id' => ['required', 'exists:users,id'],
+            'mentor_id' => ['required', 'exists:users,id',new IsMentor()],
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
-            'students.*.student_id' => ['required', 'exists:users,id'],
+            'students.*.student_id' => ['required', 'exists:users,id',new IsStudent()],
             'students.*.installment_data' => 'required|array',
             'students.*.installment_data.during_course_installment_count' => 'required|integer',
             'students.*.installment_data.during_course_installment_amount' => 'required|numeric',

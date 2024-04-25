@@ -15,6 +15,11 @@ class AdminController extends Controller
 {
     public function create(AdminCreateEditRequest $request)
     {
+        $existingUser = User::where('email', $request->user['email'])->first();
+
+        if ($existingUser) {
+            return response()->json(['message' => 'This user is already registered'], 422);
+        }
         $user = User::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
