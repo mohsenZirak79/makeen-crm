@@ -13,7 +13,7 @@ class SuperAdminSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
+        $user = User::create([
             'first_name' => 'mohamad',
             'last_name' => 'sadeghikia',
             'phone_number' => '09120000000',
@@ -21,5 +21,6 @@ class SuperAdminSeeder extends Seeder
             'email' => 'sadeghikia@gmail.com',
             'password' => Hash::make('1234'),
         ]);
+        $user->assignRole('super_admin');
     }
 }
