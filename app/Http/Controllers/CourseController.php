@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\CourseAddedEvent;
 use App\Http\Requests\CourseCreateRequest;
 use App\Http\Requests\CourseUpdateRequest;
 use App\Models\Course;
@@ -36,6 +37,7 @@ class CourseController extends Controller
         $course->courseDays()->createMany($request->course_days);
         $courseStudents = $this->addStudentsToCourse($request->students, $course);
 
+        event(new CourseAddedEvent($course));
         return response()->json([
             'course' => $course,
             'course_students' => $courseStudents
@@ -151,6 +153,7 @@ class CourseController extends Controller
             $course->courseDays()->create($day);
         }
     }
+
     public function getCoursesByCategory($category_id)
     {
         $courses = Course::where('sub_category_id', $category_id)->get();

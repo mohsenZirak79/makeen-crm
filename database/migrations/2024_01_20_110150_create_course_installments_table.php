@@ -19,8 +19,7 @@ return new class extends Migration
             $table->integer('during_course_installment_amount');
             $table->integer('after_course_installment_count');
             $table->integer('after_course_installment_amount');
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->date('after_course_installment_start');
             $table->timestamps();
 
             $table->foreign('course_student_id')->references('id')->on('course_students');

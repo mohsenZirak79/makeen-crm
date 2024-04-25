@@ -20,8 +20,7 @@ class CourseInstallment extends Model
         'during_course_installment_amount',
         'after_course_installment_count',
         'after_course_installment_amount',
-        'start_date',
-        'end_date'
+        'after_course_installment_start',
     ];
 
     protected $casts = [
