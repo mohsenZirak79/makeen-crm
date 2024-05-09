@@ -28,7 +28,7 @@ class FactorController extends Controller
             'du_date' => $request->du_date
         ]);
         if (isset($request->amount_paid))
-            TransactionController::createFromFactor('test', $request->amount_paid, $factor);
+            $factor = TransactionController::createFromFactor('test', $request->amount_paid, $factor);
         return response()->json(FactorResource::make($factor));
     }
 
