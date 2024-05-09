@@ -12,7 +12,7 @@ class FactorController extends Controller
 {
     public function index()
     {
-
+        return FactorResource::make(auth()->user()->factors)->paginate();
     }
 
     public function show(Factor $factor)
