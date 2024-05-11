@@ -22,6 +22,7 @@ Route::prefix('/student/')->name('student.')->middleware('auth:sanctum')->group(
     Route::put('update', [StudentController::class, 'update'])->name('update')->middleware(['permission:student.update']);
     Route::get('show/{id}', [StudentController::class, 'show'])->name('show')->middleware(['permission:student.show']);
     Route::delete('delete/{id}', [StudentController::class, 'delete'])->name('delete')->middleware(['permission:student.delete']);
+    Route::get('search/{search_bar}', [StudentController::class, 'search'])->name('search')->middleware(['permission:student.search']);
 
 });
 

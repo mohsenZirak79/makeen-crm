@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -42,6 +43,15 @@ class User extends Authenticatable implements HasMedia
     protected $casts = [
         'password' => 'hashed',
     ];
+
+    public function search($q): Builder|User
+    {
+        return $this->where('email', 'LIKE', "%$q%")
+            ->orWhere('phone_number', 'LIKE', "%$q%")
+            ->orWhere('last_name', 'LIKE', "%$q%")
+            ->orWhere('first_name', 'LIKE', "%$q%")
+            ->orWhere('national_id', 'LIKE', "%$q%");
+    }
 
     public function factors(): MorphMany
     {

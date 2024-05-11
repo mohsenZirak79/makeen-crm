@@ -23,6 +23,7 @@ class RoleSeeder extends Seeder
             'student.edit',
             'student.update',
             'student.delete',
+            'student.search',
             'admin.create',
             'admin.show',
             'admin.edit',
@@ -42,12 +43,15 @@ class RoleSeeder extends Seeder
             'mentor.delete',
             'student.create',
             'student.show',
+            'student.search',
             'student.edit',
             'student.update',
             'student.delete',
         ]);
         $mentor->givePermissionTo([
             'student.show',
+            'student.search',
+            'mentor.update',
         ]);
         $student->givePermissionTo([
             'student.update',
