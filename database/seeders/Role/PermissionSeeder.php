@@ -13,6 +13,7 @@ class PermissionSeeder extends Seeder
     public function run(): void
     {
         $permissions = collect([
+            'super_admin.search',
             'student.create',
             'student.show',
             'student.edit',
@@ -23,11 +24,13 @@ class PermissionSeeder extends Seeder
             'admin.edit',
             'admin.update',
             'admin.delete',
+            'admin.search',
             'mentor.create',
             'mentor.show',
             'mentor.edit',
             'mentor.update',
             'mentor.delete',
+            'mentor.search',
         ]);
         $permissions->map(function ($permission) {
             Permission::create(['name' => $permission]);

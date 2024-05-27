@@ -114,4 +114,10 @@ class AdminController extends Controller
             return response()->json(['error' => 'The desired user was not found.'], 404);
         }
     }
+
+
+    public function search($request_bar)
+    {
+        return User::staticSearch($request_bar)->role(['student','mentor'])->paginate();
+    }
 }

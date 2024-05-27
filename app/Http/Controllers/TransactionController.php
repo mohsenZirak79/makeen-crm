@@ -87,9 +87,9 @@ class TransactionController extends Controller
      * @param  string  $details
      * @param  int  $amount
      * @param  Factor  $factor
-     * @return Factor
+     * @return \Illuminate\Database\Eloquent\Model
      */
-    public static function createFromFactor(string $details, int $amount, Factor $factor): Factor
+    public static function createFromFactor(string $details, int $amount, Factor $factor): \Illuminate\Database\Eloquent\Model
     {
         return $factor->transactions()->create([
             'details' => $details,

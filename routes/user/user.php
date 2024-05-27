@@ -22,7 +22,7 @@ Route::prefix('/student/')->name('student.')->middleware('auth:sanctum')->group(
     Route::put('update', [StudentController::class, 'update'])->name('update')->middleware(['permission:student.update']);
     Route::get('show/{id}', [StudentController::class, 'show'])->name('show')->middleware(['permission:student.show']);
     Route::delete('delete/{id}', [StudentController::class, 'delete'])->name('delete')->middleware(['permission:student.delete']);
-    Route::get('search/{search_bar}', [StudentController::class, 'search'])->name('search')->middleware(['permission:student.search']);
+    Route::get('search/{search_bar}', [StudentController::class, 'search'])->name('search')->middleware(['permission:super_admin.search']);
 
 });
 
@@ -34,6 +34,7 @@ Route::prefix('/Admin/')->name('Admin.')->middleware('auth:sanctum')->group(func
     Route::put('update', [AdminController::class, 'update'])->name('update')->middleware(['permission:admin.update']);
     Route::get('show/{id}', [AdminController::class, 'show'])->name('show')->middleware(['permission:admin.show']);
     Route::delete('delete/{id}', [AdminController::class, 'delete'])->name('delete')->middleware(['permission:admin.delete']);
+    Route::get('search/{search_bar}', [AdminController::class, 'search'])->name('search')->middleware(['permission:admin.search']);
 
 });
 
@@ -44,5 +45,5 @@ Route::prefix('/Mentor/')->name('Mentor.')->middleware('auth:sanctum')->group(fu
     Route::put('update', [MentorController::class, 'update'])->name('update')->middleware(['permission:mentor.update']);
     Route::get('show/{id}', [MentorController::class, 'show'])->name('show')->middleware(['permission:mentor.show']);
     Route::delete('delete/{id}', [MentorController::class, 'delete'])->name('delete')->middleware(['permission:mentor.delete']);
-
+    Route::get('search/{search_bar}', [MentorController::class, 'search'])->name('search')->middleware(['permission:mentor.search']);
 });

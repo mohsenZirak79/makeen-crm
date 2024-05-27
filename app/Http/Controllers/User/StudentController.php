@@ -418,9 +418,9 @@ class StudentController extends Controller
         }
     }
 
-    public function search(Request $request)
+    public function search($request_bar)
     {
-        return User::search($request->q)->paginate();
+        return User::staticSearch($request_bar)->paginate();
     }
 
 }

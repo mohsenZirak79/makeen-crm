@@ -18,29 +18,33 @@ class RoleSeeder extends Seeder
         $student = Role::create(['name' => 'student']);
 
         $super_admin->givePermissionTo([
+            'super_admin.search',
             'student.create',
             'student.show',
             'student.edit',
             'student.update',
             'student.delete',
-            'student.search',
             'admin.create',
             'admin.show',
             'admin.edit',
             'admin.update',
             'admin.delete',
+            'admin.search',
             'mentor.create',
             'mentor.show',
             'mentor.edit',
             'mentor.update',
             'mentor.delete',
+            'mentor.search',
         ]);
         $admin->givePermissionTo([
+            'admin.search',
             'mentor.create',
             'mentor.show',
             'mentor.edit',
             'mentor.update',
             'mentor.delete',
+            'mentor.search',
             'student.create',
             'student.show',
             'student.search',
@@ -52,6 +56,7 @@ class RoleSeeder extends Seeder
             'student.show',
             'student.search',
             'mentor.update',
+            'mentor.search',
         ]);
         $student->givePermissionTo([
             'student.update',

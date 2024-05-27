@@ -53,6 +53,12 @@ class User extends Authenticatable implements HasMedia
             ->orWhere('national_id', 'LIKE', "%$q%");
     }
 
+    public static function staticSearch($q): Builder|User
+    {
+        $Model = new User();
+        return $Model->search($q);
+    }
+
     public function factors(): MorphMany
     {
         return $this->morphMany(Factor::class, 'billable');

@@ -37,6 +37,8 @@ class UserSeeder extends Seeder
                 'password' => Hash::make($faker->randomNumber(9, false)),
             ]);
 
+            $user->assignRole('student');
+
             $userData = UserData::create([
                 'user_id' => $user->id
             ]);

@@ -7,7 +7,7 @@ use App\Http\Requests\User\MentorCreateEditRequest;
 use App\Models\MentorData;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-
+use Illuminate\Http\Request;
 
 
 class MentorController extends Controller
@@ -100,5 +100,11 @@ class MentorController extends Controller
         } catch (ModelNotFoundException $e) {
             return response()->json(['error' => 'The desired user was not found.'], 404);
         }
+    }
+
+
+    public function search($request_bar)
+    {
+        return User::staticSearch($request_bar)->role('student')->paginate();
     }
 }
