@@ -47,14 +47,12 @@ class RoleSeeder extends Seeder
             'mentor.search',
             'student.create',
             'student.show',
-            'student.search',
             'student.edit',
             'student.update',
             'student.delete',
         ]);
         $mentor->givePermissionTo([
             'student.show',
-            'student.search',
             'mentor.update',
             'mentor.search',
         ]);
