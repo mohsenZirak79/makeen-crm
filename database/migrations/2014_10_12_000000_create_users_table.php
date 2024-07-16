@@ -18,6 +18,7 @@ return new class extends Migration
             $table->char('phone');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('chat_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

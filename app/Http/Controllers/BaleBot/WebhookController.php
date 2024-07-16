@@ -14,6 +14,7 @@ class WebhookController extends Controller
     //dear developer,if you want to add new command just seed it into the database and add a new function with name like your command.
     // keep it in mind that your command should start with '/' but your function should not.
     //example command=>/start , function=>start.
+    // function handle is your input of all request come from bot
     public function handle(Request $request): void
     {
         $data=$request->yek;
