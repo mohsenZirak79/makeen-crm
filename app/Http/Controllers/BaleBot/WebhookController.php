@@ -10,7 +10,11 @@ use Illuminate\Support\Facades\Http;
 
 class WebhookController extends Controller
 {
-    public function handle(Request $request)
+
+    //dear developer,if you want to add new command just seed it into the database and add a new function with name like your command.
+    // keep it in mind that your command should start with '/' but your function should not.
+    //example command=>/start , function=>start.
+    public function handle(Request $request): void
     {
         $data=$request->yek;
         $firstCharacter = substr($data['message']['text'], 0, 1);
@@ -52,7 +56,8 @@ class WebhookController extends Controller
 
     public function setInformation($data): void
     {
-       $user =  User::where('phone_number',$data['message']['contact']['phone_number'])->first();
+       $output_str = '0' . substr($data['message']['contact']['phone_number'], 2);
+       $user =  User::where('phone_number', $output_str)->first();
        if ($user->chat_id === null) {
            $user->update([
                'chat_id'=>$data['message']['chat']['id'],
