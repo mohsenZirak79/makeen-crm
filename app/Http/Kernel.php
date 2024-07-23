@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\ResetPasswordCkeck;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -53,6 +54,7 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $middlewareAliases = [
+        'otp.check'=>\App\Http\Middleware\ResetPasswordCkeck::class,
         'auth.reset' => \App\Http\Middleware\ResetPasswordWithToken::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,

@@ -41,6 +41,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
     public function tokens(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(PersonalResetPasswordToken::class);

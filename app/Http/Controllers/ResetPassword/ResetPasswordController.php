@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Services\Otp\MakeOtp;
 use App\Services\PersonalResetPasswordToken\ResetPasswordToken;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ResetPasswordController extends Controller
 {
@@ -77,8 +78,18 @@ class ResetPasswordController extends Controller
         return response()->json(['message' => 'success'], 200);
     }
 
-    public function resetPassword(Request $request): \Illuminate\Http\JsonResponse
+    public function reset(Request $request): \Illuminate\Http\JsonResponse
     {
-        $request->validate([]);
+        $request->validate([
+            "password" => 'required|confirmed'
+        ]);
+
+        User::where('id',$request->user->id)->update([
+            'password'=>Hash::make($request->Password),
+        ]);
+
+        $request->user->tokens()->delete();
+
+        return response()->json(['message' => 'success'], 200);
     }
 }
