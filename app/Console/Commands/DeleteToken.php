@@ -2,17 +2,17 @@
 
 namespace App\Console\Commands;
 
-use App\Models\OtpLog;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
-class deleteOtp extends Command
+class DeleteToken extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'app:delete-otp';
+    protected $signature = 'app:delete-token';
 
     /**
      * The console command description.
@@ -26,6 +26,6 @@ class deleteOtp extends Command
      */
     public function handle()
     {
-       OtpLog::where('otp_expiry', '<=', now())->delete();
+        DB::table('personal_reset_password_tokens')->delete();
     }
 }
