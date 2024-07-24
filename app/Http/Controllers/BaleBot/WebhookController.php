@@ -34,15 +34,14 @@ class WebhookController extends Controller
         }
     }
 
-    public static function __callStatic($method, $parameters)
+    /*public static function __callStatic($method, $parameters)
     {
         return (new static)->$method(...$parameters);
-    }
+    }*/
 
-    public function start($data): void
+    public static function start($data): void
     {
        $user =  User::where('chat_id',$data['message']['chat']['id'])->first();
-
         if ($user) {
             self::sendMessage($data['message']['chat']['id'],' خوش امدید' . $user->phone_number . 'کاربر گرامی به شماره ');
         }else{
@@ -55,7 +54,7 @@ class WebhookController extends Controller
         }
     }
 
-    public function setInformation($data): void
+    public static function setInformation($data): void
     {
        $output_str = '0' . substr($data['message']['contact']['phone_number'], 2);
        $user =  User::where('phone_number', $output_str)->first();
@@ -70,9 +69,9 @@ class WebhookController extends Controller
        }
     }
 
-    public function sendMessage($chat_id, $message , $keyboard = null): void
+    public static function sendMessage($chat_id, $message , $keyboard = null): void
     {
-        Http::post('https://tapi.bale.ai/bot322477666:iO4GjDLkB2QvBi9Al5QRU1PBJ7AO2pt6Zcmvt6Hs/sendMessage', [
+        Http::post('https://tapi.bale.ai/bot'.env('BALE_TOKEN').'/sendMessage', [
             'chat_id' => $chat_id,
             'text' => $message,
             'reply_markup' => json_encode($keyboard),
